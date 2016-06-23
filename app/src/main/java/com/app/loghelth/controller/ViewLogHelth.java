@@ -1,7 +1,6 @@
 package com.app.loghelth.controller;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -38,16 +37,25 @@ public class ViewLogHelth extends View{
 
     }
 
+    double fator = 0.5;
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        desenhaCoracao(canvas, getCoracaoImg());
-
+        desenhaCoracao(canvas, getCoracaoImg(), fator);
+        if(fator > 0){
+            fator = fator - 0.01;
+        }else {
+            fator = 0.5;
+        }
+        invalidate();
     }
 
-    public void desenhaCoracao(Canvas canvas, Drawable d){
+    public void desenhaCoracao(Canvas canvas, Drawable d, double fator){
         // calcula centro
-        float larguraCanvas = canvas.getWidth();
+        double larguraCanvas = canvas.getWidth();
+        double fatorLargura = larguraCanvas * getFatorDeLargura(fator);
+
         float larguraImagem = d.getIntrinsicWidth();
         float alturaImagem = d.getIntrinsicHeight();
         /**
@@ -55,10 +63,10 @@ public class ViewLogHelth extends View{
          * multiplicando ele pela largura e arredondando.
          */
         float aspectRatio = getAspectRatio(alturaImagem, larguraImagem);
-        int baixo = Math.round(larguraCanvas*aspectRatio);
+        int baixo = Math.round((float)fatorLargura * aspectRatio);
 
         // left, top, right, bottom.
-        d.setBounds(0, 0, (int) larguraCanvas, baixo);
+        d.setBounds(0, 0, (int) fatorLargura, baixo);
         d.draw(canvas);
     }
 
@@ -67,5 +75,9 @@ public class ViewLogHelth extends View{
          * Calcula AspectRatio da imagem
          */
         return alturaImage/larguraImagem;
+    }
+
+    public double getFatorDeLargura(double fatorLargura){
+        return fatorLargura;
     }
 }
