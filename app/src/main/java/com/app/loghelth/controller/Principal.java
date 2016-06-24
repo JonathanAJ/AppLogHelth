@@ -12,7 +12,6 @@ import com.app.loghelth.R;
 public class Principal extends AppCompatActivity {
 
     private ViewLogHelth telaLogHelth;
-    private Drawable coracaoImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +19,6 @@ public class Principal extends AppCompatActivity {
         setContentView(R.layout.activity_principal);
 
         telaLogHelth = (ViewLogHelth) findViewById(R.id.telaLogHelth);
-        coracaoImg = ResourcesCompat.getDrawable(getResources(), R.drawable.heart_icon, null);
-        telaLogHelth.setCoracaoImg(coracaoImg);
     }
 
 
