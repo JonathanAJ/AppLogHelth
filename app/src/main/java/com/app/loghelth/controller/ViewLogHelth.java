@@ -35,40 +35,38 @@ public class ViewLogHelth extends View{
     }
 
     double fator = 0.5;
+    double i = 0;
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        desenhaCoracao(canvas, coracaoImg, fator);
+        canvas.scale((float) fator, (float) fator, canvas.getWidth()/2, 100);
+
+        desenhaCoracao(canvas, coracaoImg);
         if(fator > 0){
             fator = fator - 0.01;
         }else {
             fator = 0.5;
         }
+
         invalidate();
     }
 
-    public void desenhaCoracao(Canvas canvas, Drawable d, double fator){
+    public void desenhaCoracao(Canvas canvas, Drawable d){
 
-        double larguraCanvas = canvas.getWidth();
-        double fatorLargura = larguraCanvas * getFatorDeLargura(fator);
+        int larguraCanvas = canvas.getWidth();
 
-        double alturaCanvas = canvas.getHeight();
-        double fatorAltura = alturaCanvas * getFatorDeLargura(fator);
-
-        float larguraImagem = d.getIntrinsicWidth();
-        float alturaImagem = d.getIntrinsicHeight();
+        int larguraImagem = d.getIntrinsicWidth();
+        int alturaImagem = d.getIntrinsicHeight();
         /**
          * retorna o aspect ratio da imagem para calcular sua altura,
          * multiplicando ele pela largura e arredondando.
          */
-        double aspectRatio = getAspectRatio(alturaImagem, larguraImagem);
-        double baixo = fatorAltura * aspectRatio;
-
-        double centro = (larguraCanvas/2) - (fatorLargura/2);
+        float aspectRatio = getAspectRatio(alturaImagem, larguraImagem);
+        float baixo = larguraCanvas * aspectRatio;
 
         // left, top, right, bottom.
-        d.setBounds((int) centro, (int) (100 - baixo), (int) (fatorLargura + centro), (int) (90 + baixo));
+        d.setBounds(0, 0, larguraCanvas, (int) baixo);
         d.draw(canvas);
     }
 
