@@ -180,8 +180,11 @@ public class Principal extends AppCompatActivity {
     public void beginListenForData() {
         final Handler handler = new Handler();
         stopThread = false;
+        telaLogHelth.setStopThread(stopThread);
+        telaLogHelth.invalidate();
+
         buffer = new byte[1024];
-        Thread thread  = new Thread(new Runnable() {
+        thread  = new Thread(new Runnable() {
             public void run() {
                 while(!Thread.currentThread().isInterrupted() && !stopThread) {
                     try {
@@ -192,7 +195,7 @@ public class Principal extends AppCompatActivity {
                             string = new String(rawBytes,"UTF-8");
                             handler.post(new Runnable() {
                                 public void run() {
-                                    txtBpm.setText(string + "bpm");
+                                    txtBpm.setText(string + " bpm");
                                 }
                             });
 
@@ -211,6 +214,9 @@ public class Principal extends AppCompatActivity {
 
     public void onClickStop(View view) throws IOException {
         stopThread = true;
+        telaLogHelth.setStopThread(stopThread);
+        telaLogHelth.invalidate();
+
         outputStream.close();
         inputStream.close();
         socket.close();
