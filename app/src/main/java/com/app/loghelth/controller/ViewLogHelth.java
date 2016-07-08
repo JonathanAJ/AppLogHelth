@@ -12,6 +12,12 @@ import com.app.loghelth.R;
 public class ViewLogHelth extends View{
 
     private Drawable coracaoImg;
+    private boolean stopThread = true;
+    private double fator = 0.5;
+
+    public void setStopThread(boolean stopThread) {
+        this.stopThread = stopThread;
+    }
 
     public ViewLogHelth(Context context) {
         super(context);
@@ -34,9 +40,6 @@ public class ViewLogHelth extends View{
 
     }
 
-    double fator = 0.5;
-    double i = 0;
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -48,8 +51,9 @@ public class ViewLogHelth extends View{
         }else {
             fator = 0.5;
         }
-
-        invalidate();
+        if(!stopThread){
+            invalidate();
+        }
     }
 
     public void desenhaCoracao(Canvas canvas, Drawable d){
