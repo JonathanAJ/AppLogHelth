@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="corBranca">#F4F4F9</color>
+    <color name="corVerde">#17A99C</color>
+    <color name="corVerdeEscuro">#136F63</color>
+    <color name="corAzulEscuro">#364652</color>
+    <color name="corCinzaClaro">#E1DFE5</color>
+    <color name="corCinzaClaroHint">#747376</color>
+    <color name="corCinzaEscuro">#161925</color>
+    <color name="corLaranja">#C84630</color>
+    <color name="corLaranjaClaro">#c76a5a</color>
+    <color name="corLaranjaLine">#F98546</color>
+    <color name="corLaranjaClaroLine">#E1C0AD</color>
+    <color name="corVerdeBt">#149A9A</color>
+    <color name="corVerdeBtPress">#4CDF1F</color>
 </resources>

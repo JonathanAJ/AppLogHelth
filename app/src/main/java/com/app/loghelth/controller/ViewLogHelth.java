@@ -19,6 +19,10 @@ public class ViewLogHelth extends View{
         this.stopThread = stopThread;
     }
 
+    public void setFator(double fator) {
+        this.fator = fator;
+    }
+
     public ViewLogHelth(Context context) {
         super(context);
         init(context);
@@ -46,12 +50,12 @@ public class ViewLogHelth extends View{
         canvas.scale((float) fator, (float) fator, canvas.getWidth()/2, 100);
 
         desenhaCoracao(canvas, coracaoImg);
-        if(fator > 0){
-            fator = fator - 0.01;
-        }else {
-            fator = 0.5;
-        }
         if(!stopThread){
+            if(fator > 0){
+                fator = fator - 0.01;
+            }else {
+                fator = 0.5;
+            }
             invalidate();
         }
     }

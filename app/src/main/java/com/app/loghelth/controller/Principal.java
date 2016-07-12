@@ -3,14 +3,8 @@ package com.app.loghelth.controller;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-<<<<<<< HEAD
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.res.ResourcesCompat;
-=======
 import android.content.Intent;
 import android.os.Handler;
->>>>>>> a51535711cff4ce7905b345af5ddec6a8107bb98
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,12 +14,8 @@ import android.widget.Toast;
 import com.app.loghelth.R;
 
 import java.io.IOException;
-<<<<<<< HEAD
-import java.net.Socket;
-=======
 import java.io.InputStream;
 import java.io.OutputStream;
->>>>>>> a51535711cff4ce7905b345af5ddec6a8107bb98
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,15 +24,6 @@ public class Principal extends AppCompatActivity {
     private ViewLogHelth telaLogHelth;
     private TextView txtBpm;
 
-<<<<<<< HEAD
-    private final UUID PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");//Serial Port Service ID
-    BluetoothAdapter bluetoothAdapter;
-    BluetoothDevice dispositivo;
-
-    BluetoothSocket socket;
-
-    boolean encontrado = false;
-=======
     private final String DEVICE_NAME="HC-05";
     private final UUID PORT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");//Serial Port Service ID
     private BluetoothDevice device;
@@ -55,7 +36,6 @@ public class Principal extends AppCompatActivity {
     byte buffer[];
     int bufferPosition;
     boolean stopThread;
->>>>>>> a51535711cff4ce7905b345af5ddec6a8107bb98
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,42 +44,6 @@ public class Principal extends AppCompatActivity {
 
         telaLogHelth = (ViewLogHelth) findViewById(R.id.telaLogHelth);
         txtBpm = (TextView) findViewById(R.id.txtBpm);
-<<<<<<< HEAD
-
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        verificaPareamento();
-    }
-
-    public void verificaPareamento(){
-
-        Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
-
-        if(bondedDevices.isEmpty()) {
-            Toast.makeText(getApplicationContext(),"Por favor, pareie seu dispositivo primeiro.",Toast.LENGTH_SHORT).show();
-        }
-        else {
-
-            for(BluetoothDevice iterator : bondedDevices) {
-
-                if(iterator.getName().equals("linvor")) {
-
-                    dispositivo = iterator;
-                    encontrado = true;
-
-                    try{
-                        socket = dispositivo.createRfcommSocketToServiceRecord(PORT_UUID);
-                        socket.connect();
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
-
-                    break;
-
-                }
-            }
-        }
-=======
->>>>>>> a51535711cff4ce7905b345af5ddec6a8107bb98
     }
 
     public void onClickStart(View view) {
@@ -203,6 +147,9 @@ public class Principal extends AppCompatActivity {
                     }
                     catch (IOException ex) {
                         stopThread = true;
+                        telaLogHelth.setStopThread(stopThread);
+                        telaLogHelth.setFator(0.5);
+                        telaLogHelth.invalidate();
                     }
                 }
             }
@@ -215,11 +162,15 @@ public class Principal extends AppCompatActivity {
     public void onClickStop(View view) throws IOException {
         stopThread = true;
         telaLogHelth.setStopThread(stopThread);
+        telaLogHelth.setFator(0.5);
         telaLogHelth.invalidate();
 
-        outputStream.close();
-        inputStream.close();
-        socket.close();
+        if(socket != null){
+            outputStream.close();
+            inputStream.close();
+            socket.close();
+        }
+
         deviceConnected = false;
         txtBpm.setText("0 bpm");
     }

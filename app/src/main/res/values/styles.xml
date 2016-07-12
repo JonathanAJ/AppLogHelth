@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textStyle">
+        <item name="android:textSize">@dimen/texto_tamanho</item>
+        <item name="android:textColor">@color/corCinzaClaro</item>
+    </style>
+
+    <style name="button_style" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/corBranca</item>
+        <item name="android:textSize">@dimen/texto_tamanho</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_height">@dimen/botao_tamanho</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="button_style_del" parent="@android:style/Widget.Button">
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/corBranca</item>
+        <item name="android:textSize">@dimen/texto_tamanho</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_height">@dimen/botao_tamanho</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/button_del</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>
